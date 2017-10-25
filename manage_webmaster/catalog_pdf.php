@@ -22,7 +22,7 @@
                   <?php while ($row = $getCatalogPdf->fetch_assoc()) { ?>
                   <tr>
                     <td><?php echo $i;?></td>
-                    <td><a href="<?php echo $base_url . 'uploads/catalog_pdf/'.$row['pdf_name'] ?>"><img src="../uploads/pdf.png" alt="" height="60"></a></td>
+                    <td><a href="<?php echo $base_url . 'uploads/catalog_pdf/'.$row['pdf_name'] ?>" target="_blank"><img src="../uploads/pdf.png" alt="" height="60"></a></td>
                     <td><?php echo $row['pdf_name'] ?></td>
                     <td><?php if ($row['status']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['status']." data-tbname='catalog_pdf'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['status']." data-incId=".$row['id']." data-tbname='catalog_pdf'>In Active</span>" ;} ?></td>
                     <td> <a href="edit_catalog_pdf.php?uid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a> &nbsp; <a href="delete_catalog_pdf.php?uid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-delete zmdi-hc-fw" onclick="return confirm('Are you sure you want to delete?')"></i></a>&nbsp; <a href="#"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" class=""></i></a></td>
