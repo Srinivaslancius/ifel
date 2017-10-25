@@ -36,7 +36,8 @@ $id = $_GET['uid'];
                   </div>
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Email</label>
-                    <input type="email" name="user_email" class="form-control" id="form-control-2" placeholder="Email" data-error="Please enter a valid email address." required value="<?php echo $getUsers1['user_email'];?>">
+                    <input type="email" name="user_email" class="form-control" id="user_email" placeholder="Email" data-error="Please enter a valid email address." required value="<?php echo $getUsers1['user_email'];?>" onkeyup="checkemail()">
+                    <span id="email_status" style="color: red;"></span>
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group">
@@ -46,7 +47,8 @@ $id = $_GET['uid'];
                   </div>
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Mobile</label>
-                    <input type="text" name="user_mobile" class="form-control" id="form-control-2" placeholder="Mobile" data-error="Please enter Correct Mobile Number." required maxlength="10" pattern="[0-9]{10}" onkeypress="return isNumberKey(event)" value="<?php echo $getUsers1['user_mobile'];?>">
+                    <input type="text" name="user_mobile" class="form-control" id="user_mobile" placeholder="Mobile" data-error="Please enter Correct Mobile Number." required maxlength="10" pattern="[0-9]{10}" onkeypress="return isNumberKey(event)" value="<?php echo $getUsers1['user_mobile'];?>" onkeyup="checkMobile()">
+                    <span id="mobile_status" style="color: red;"></span>
                     <div class="help-block with-errors"></div>
                   </div>
                   <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
@@ -76,4 +78,43 @@ $id = $_GET['uid'];
             return false;
         return true;
     }
+</script>
+<!--Script for already existed mobile number checking -->
+<script>
+  function checkMobile() {
+      var mobile1 = document.getElementById("user_mobile").value;
+      if (mobile1){
+        $.ajax({
+        type: "POST",
+        url: "check_mobile_avail.php",
+        data: {
+          user_mobile:mobile1,
+        },
+        success: function (response) {
+          $( '#mobile_status' ).html(response);
+          if (response == "Mobile Number Already Exist"){
+            $("#user_mobile").val("");
+          }
+          }
+         });
+      }
+    }
+    function checkemail() {
+    var email1 = document.getElementById("user_email").value;
+    if (email1){
+      $.ajax({
+      type: "POST",
+      url: "check_email_avail.php",
+      data: {
+        user_email:email1,
+      },
+      success: function (response) {
+        $( '#email_status' ).html(response);
+        if (response == "Email Already Exist"){
+          $("#user_email").val("");
+        }
+        }
+       });
+    }
+  }
 </script>
