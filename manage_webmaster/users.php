@@ -62,41 +62,6 @@
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Street Name: </div>
-                            <div class="col-sm-6"><?php echo $row['street_name'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Street No: </div>
-                            <div class="col-sm-6"><?php echo $row['street_no'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Flat Name: </div>
-                            <div class="col-sm-6"><?php echo $row['flat_name'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Flat No: </div>
-                            <div class="col-sm-6"><?php echo $row['flat_no'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Location: </div>
-                            <div class="col-sm-6"><?php echo $row['location'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Landmark: </div>
-                            <div class="col-sm-6"><?php echo $row['landmark'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Pincode: </div>
-                            <div class="col-sm-6"><?php echo $row['pincode'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
                             <div class="col-sm-4">Created Date: </div>
                             <div class="col-sm-6"><?php echo $row['created_at'];?></div>
                           </div>
