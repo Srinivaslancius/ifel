@@ -93,7 +93,7 @@ if (!isset($_POST['submit']))  {
         },
         success: function (response) {
           $( '#user_status' ).html(response);
-          if (response == "User Name Number Already Exist"){
+          if (response == "User Name Already Exist"){
             $("#user_name").val("");
           }
           }

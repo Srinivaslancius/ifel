@@ -6,7 +6,7 @@ if(isset($_POST['user_name'])) {
 	$checkdata=" SELECT user_name FROM users WHERE user_name='$userName' ";
 	$query=$conn->query($checkdata);
 	if($query->num_rows>0) {
-	    echo "User Name Number Already Exist";
+	    echo "User Name Already Exist";
 	} else {
 	}
 exit();
