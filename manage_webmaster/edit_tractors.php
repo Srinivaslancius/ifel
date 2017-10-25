@@ -7,7 +7,8 @@ $id = $_GET['uid'];
     $title = $_POST['title'];
     $model = $_POST['model'];
     $quantity = $_POST['quantity'];
-    $sql = "UPDATE `tractors` SET title = '$title',model = '$model', quantity = '$quantity' WHERE id = '$id' ";
+    $status = $_POST['status'];
+    $sql = "UPDATE `tractors` SET title = '$title',model = '$model', quantity = '$quantity', status = '$status' WHERE id = '$id' ";
     if($conn->query($sql) === TRUE){
       echo "<script type='text/javascript'>window.location='tractors.php?msg=success'</script>";
     } else {
@@ -39,6 +40,17 @@ $id = $_GET['uid'];
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Quantity</label>
                     <input type="text" class="form-control" id="form-control-2" name="quantity" required value="<?php echo $getTractors1['quantity'];?>">
+                    <div class="help-block with-errors"></div>
+                  </div>
+                  <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Choose your status</label>
+                    <select id="form-control-3" name="status" class="custom-select" data-error="This field is required." required>
+                      <option value="">Select Status</option>
+                      <?php while($row = $getStatus->fetch_assoc()) {  ?>
+                          <option <?php if($row['id'] == $getTractors1['status']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['status']; ?></option>
+                      <?php } ?>
+                   </select>
                     <div class="help-block with-errors"></div>
                   </div>
                   <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>

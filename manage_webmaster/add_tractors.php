@@ -8,8 +8,9 @@ if (!isset($_POST['submit']))  {
   $title = $_POST['title'];
   $model = $_POST['model'];
   $quantity = $_POST['quantity'];
+  $status = $_POST['status'];
    
-  $sql = "INSERT INTO tractors (`title`,`model`,`quantity`) VALUES ('$title','$model', '$quantity')";
+  $sql = "INSERT INTO tractors (`title`,`model`,`quantity`,`status`) VALUES ('$title','$model','$quantity','$status')";
   if($conn->query($sql) === TRUE){
     echo "<script type='text/javascript'>window.location='tractors.php?msg=success'</script>";
   }else {
@@ -40,6 +41,17 @@ if (!isset($_POST['submit']))  {
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Quantity</label>
                     <input type="text" class="form-control" id="form-control-2" name="quantity" placeholder="Quantity" data-error="Please enter Quantity." required>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                  <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Choose your status</label>
+                    <select id="form-control-3" name="status" class="custom-select" data-error="This field is required." required>
+                      <option value="">Select Status</option>
+                      <?php while($row = $getStatus->fetch_assoc()) {  ?>
+                          <option value="<?php echo $row['id']; ?>"><?php echo $row['status']; ?></option>
+                      <?php } ?>
+                   </select>
                     <div class="help-block with-errors"></div>
                   </div>
                   <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
