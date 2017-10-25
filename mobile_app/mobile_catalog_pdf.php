@@ -7,18 +7,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $lists = array();
    
         //Send Paramters to function for check
-        $t_name='spare_parts';        
+        $t_name='catalog_pdf';        
         $status ='0';  //If status = 0 || 1 - (active || inactive)        
         $getData = MobileCommonClass::getAllProductsData($t_name,$status);
         $response["lists"] = array();
         while($row = $getData->fetch_assoc()) {
             //Chedck the condioton for emptty or not        
             $lists = array();
-            $lists["id"] = $row["id"];
-            $lists["sl_no"] = $row["sl_no"];
-            $lists["spare_parts_name"] = $row["title"];  
-            $lists["spare_parts_description"] = strip_tags($row["description"]);
-            $lists["spare_parts_quantity"] = $row["quantity"];           
+            $lists["id"] = $row["id"];            
+            $lists["pdf_file"] = $base_url."uploads/book_images/php.jpg";
             array_push($response["lists"], $lists);      
         }
         $response["success"] = 0;
