@@ -8,16 +8,10 @@ if (!isset($_POST['submit']))  {
     $user_email = $_POST['user_email'];
     $user_password = encryptPassword($_POST['user_password']);
     $user_mobile = $_POST['user_mobile'];
-    $street_name = $_POST['street_name'];
-    $street_no = $_POST['street_no'];
-    $flat_name = $_POST['flat_name'];
-    $flat_no = $_POST['flat_no'];
-    $location = $_POST['location'];
-    $landmark = $_POST['landmark'];
-    $pincode = $_POST['pincode'];
     $created_admin_id = $_SESSION['admin_user_id'];
     $created_at = date("Y-m-d h:i:s");
-    $sql = "INSERT INTO users (`user_name`, `user_email`, `user_password`,`user_mobile`,`street_name`,`street_no`,`flat_name`,`flat_no`,`location`,`landmark`,`pincode`,`created_admin_id`, `created_at`, `status`) VALUES ('$user_name', '$user_email','$user_password','$user_mobile','$street_name','$street_no','$flat_name','$flat_no','$location','$landmark','$pincode','$created_admin_id','$created_at', 0)";
+    $status = $_POST['status'];
+    $sql = "INSERT INTO users (`user_name`, `user_email`, `user_password`,`user_mobile`,`created_admin_id`, `created_at`, `status`) VALUES ('$user_name', '$user_email','$user_password','$user_mobile','$created_admin_id','$created_at', '$status')";
     if($conn->query($sql) === TRUE){
        echo "<script type='text/javascript'>window.location='users.php?msg=success'</script>";
     } else {
@@ -55,41 +49,6 @@ if (!isset($_POST['submit']))  {
                     <span id="mobile_status" style="color: red;"></span>
                     <div class="help-block with-errors"></div>
                   </div>
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Street Name</label>
-                    <input type="text" name="street_name" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter stree name." required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Street Number</label>
-                    <input type="text" name="street_no" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter stree number." required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Flat Name</label>
-                    <input type="text" name="flat_name" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter flat name." required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">flat Number</label>
-                    <input type="text" name="flat_no" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter flat number." required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Location</label>
-                    <input type="text" name="location" class="form-control" id="form-control-2" placeholder="Location" data-error="Please enter your location." required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Landmark</label>
-                    <input type="text" name="landmark" class="form-control" id="form-control-2" placeholder="Landmark" data-error="Please enter your near landmark." required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Pincode</label>
-                    <input type="text" name="pincode" class="form-control" id="form-control-2" placeholder="Pincode" data-error="Please enter correct pincode number." required maxlength="6" onkeypress="return isNumberKey(event)">
-                    <div class="help-block with-errors"></div>
-                  </div>                  
                   <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Choose your status</label>
