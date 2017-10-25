@@ -14,8 +14,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         while($row = $getData->fetch_assoc()) {
             //Chedck the condioton for emptty or not        
             $lists = array();
-            $lists["id"] = $row["id"];            
-            $lists["pdf_file"] = $base_url."uploads/book_images/php.jpg";
+            $lists["id"] = $row["id"];  
+            $lists["pdf_title"] = $row["pdf_name"]; 
+            $lists["pdf_image"] = $base_url."uploads/pdf.png";      
+            $lists["pdf_file"] = $base_url."uploads/catalog_pdf/".$row["pdf_name"];
             array_push($response["lists"], $lists);      
         }
         $response["success"] = 0;
