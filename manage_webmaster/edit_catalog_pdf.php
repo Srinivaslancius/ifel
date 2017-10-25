@@ -46,7 +46,7 @@ if (!isset($_POST['submit']))  {
                 <form data-toggle="validator" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="form-control-4" class="control-label">Pdf Name</label>
-                    <input type="text" value="<?php echo $base_url . 'uploads/catalog_pdf/'.$getCatalogPdfData['pdf_name'] ?>"/>
+                    <input type="text" value="<?php echo $getCatalogPdfData['pdf_name'] ?>"/>
                     <label class="btn btn-default file-upload-btn">
                         Choose file...
                         <input id="form-control-22" class="file-upload-input" type="file" accept="application/pdf" name="fileToUpload" id="fileToUpload"  multiple="multiple" >
