@@ -53,6 +53,14 @@
                 <span class="menu-text">Spare Parts</span>
               </a>
             </li>
+            <li  class="<?php if($page_name == 'catalog_pdf.php' || $page_name == 'add_catalog_pdf.php' || $page_name == 'edit_catalog_pdf.php') { echo "active"; } ?>">
+              <a href="catalog_pdf.php" aria-haspopup="true">
+                <span class="menu-icon">
+                   <i class="zmdi zmdi-file-text zmdi-hc-fw"></i>
+                </span> 
+                <span class="menu-text">Catalog Pdf</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
