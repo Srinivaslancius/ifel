@@ -30,7 +30,8 @@ if (!isset($_POST['submit']))  {
                 <form data-toggle="validator" method="POST">
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Name</label>
-                    <input type="text" name="user_name" class="form-control" id="form-control-2" placeholder="User Name" data-error="Please enter a valid User Name" required>
+                    <input type="text" name="user_name" class="form-control" id="user_name" placeholder="User Name" data-error="Please enter a valid User Name" required onkeyup="checkUser()">
+                    <span id="user_status" style="color: red;"></span>
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group">
@@ -81,6 +82,24 @@ if (!isset($_POST['submit']))  {
 
 <!--Script for already existed mobile number checking -->
 <script>
+  function checkUser() {
+      var user1 = document.getElementById("user_name").value;
+      if (user1){
+        $.ajax({
+        type: "POST",
+        url: "check_user_avail.php",
+        data: {
+          user_name:user1,
+        },
+        success: function (response) {
+          $( '#user_status' ).html(response);
+          if (response == "User Name Number Already Exist"){
+            $("#user_name").val("");
+          }
+          }
+         });
+      }
+    }
   function checkMobile() {
       var mobile1 = document.getElementById("user_mobile").value;
       if (mobile1){
